@@ -10,55 +10,30 @@
   </head>
   <body>
     <h2>Before</h2>
-    <!-- We can use React just in a small portion of our page. It is a library not a framework to be used in the entire file-->
     <div id="root">
       <h1>Hello World!</h1>
     </div>
     <h2>After</h2>
-    <!-- <script>
-      // Ques :- How do the browser know the element like createElement, inner HTML, appendChild
-      // Answer :- These are the superpowers that browser has already in it, it has a javascript engine in it that executes these javacript
-      // But the browser does not know what is react or what is react code
+    <!-- <script> 
       let heading = document.createElement("h1");
       heading.innerHTML = "Hello World from Javascript!";
       let root = document.getElementById("root");
       root.appendChild(heading);
-
-      // CDN (Content Delivery Network) :- It is a geographically distributed network of servers that stores copies of website content closer to users, aiming to reduce latency and improve web performance. CDNs are used because they offer faster content delivery, enhanced reliability, cost savings, and protection against attacks
-      // These are the website where react has been hosted and we are just pulling react from there into our project
     </script> -->
-
-    <!-- React CDN Links -->
-    <!-- By adding these link now our project has react in it and now our browser will understand the react code -->
-    <script
+    <!-- <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
     ></script>
     <script
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
-    <!-- Ques :- What does crossorigin mean and why we have written it here-->
+    ></script> -->
+    <!-- <script src="./App.js"></script> -->
+    <script type="module" src="./App.js"></script>
     <!-- 
-    Ans :- It's an attribute that tells the browser how to load a file from another website (like a CDN).
-
-    Because the React scripts are loaded from unpkg.com (a different website), crossorigin is added to:
-    - Allow better error messages in the browser.
-    - Help with debugging if something goes wrong. 
-
-    There are two main values:
-    - "anonymous" – The browser does not send credentials (cookies, HTTP authentication) when making the request.
-    - "use-credentials" – The browser does send credentials with the request.
-    If you just write crossorigin without a value, it's treated as crossorigin="anonymous".
+    This error occurs because you're using ECMAScript module syntax (import, export) in a JavaScript file (App.js) that the browser thinks is a normal script, not a module.
+    By default, browsers do not understand import/export inside <script> tags unless you explicitly tell them the file is a module.
+    Those are module imports, and regular scripts aren’t allowed to use import or export.
     -->
-
-    <!-- React at the end of the day is just a plane javascript code -->
-
-    <!-- Ques :- Why we have included two files, couldn't be there a single file -->
-    <!-- Ans :- react.development.js contain the core of the react while react-dom.development.js is used for manipulating the dom(Document Object model) elements and acts as a bridge between the browser and react && react is used in various places like react-native in our phone and react-3d so there are two separate files-->
-    <script src="./App.js"></script>
-    <!-- It is very important to maintain the order of our script files, first -> react, second -> react-dom, third -> app.js -->
-
-    <!-- Git is a version control tool that runs locally to track code changes, while GitHub is an online platform where you can store and collaborate on Git-managed projects. -->
   </body>
 </html>

@@ -1,4 +1,6 @@
-// The main function of react is to do DOM manipulation using javascript. DOM manipulation is the most costly operation in our browser and we are optimizing these operations using react library.
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 const heading = React.createElement(
   "h1",
   { id: "heading" }, // The object is used to give attribute to our element
@@ -20,12 +22,11 @@ const parent = React.createElement(
   "div",
   { id: "parent" },
   React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "My name is Raghav."),
-    React.createElement("h2", {}, "My name is Om Jindal."),
+    React.createElement("h1", { key: "1" }, "My name is Raghav."),
+    React.createElement("h2", { key: "2" }, "My name is Om Jindal."),
   ])
 );
 
 root.render(parent); // It will replace all the elemets whatever is written inside root div
-
 console.log(parent);
 console.log(parent.props); // Props contain all the attributes and children
