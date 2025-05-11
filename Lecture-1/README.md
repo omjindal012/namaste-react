@@ -100,3 +100,44 @@ It is very important to maintain the order of our script files, first -> react, 
 - Another way to add `react` is by using `npm`
 - npm i react
 - npm i react-dom
+
+# package.json
+
+<!-- "browserslist": [
+"last 2 Chrome version",
+"last 2 versions"
+] -->
+
+To signify which browser and their version our project should be able to run on
+
+<!-- "scripts": {
+"start": "parcel index.html",
+"build": "parcel build index.html"
+}, -->
+
+- We had created these scripts to avoid writing `npx parcel index.html` again and again to start our project
+- Once we added the script we would write `npm run start` OR `npm start` to run our project
+- To build project `npm run build `
+
+# JSX
+
+- Now it is very tedious to write these nested elements in React
+- So meta developers introduces JSX (JavaScript XML) to make it easy to create and manipulate elements
+- But React and JSX are two different things, they are not the part of one another
+- JSX is not HTML in Javascript but it is HTML-like or XML-like syntax.
+
+`const jsxHeading = <h1 id="heading">This is heading in JSX</h1>;`
+
+- This is not the valid pure javascript which js engine understand. Our JS engine understand ES6(ECMAScript). This would not be recognized by our browser
+- So how does the browser is understanding it here :- It is because of parcel. This code is transpiled even before it reaches to the browser. Transpiled means converted it to the code which browser can understand.
+- But this transpilation is not performed by the parcel itself. It is performed by the package named babel which parcel has installed. Babel is a js compiler.
+
+- Normally flow of execution is :- React.createElement -> ReactElement-JS Object -> HTML Element
+- In case of JSX :- JSX -> React.createElement -> ReactElement-JS Object -> HTML Element
+
+# React Components
+
+1. Class Based Components - OLD
+2. Functional Components - NEW -> It is just a normal javascript function which return some JSX code.
+
+- Whatever we write inside our curly brackets inside JSX, It will be executed as js code, but suppose we are calling an api which send somes malicious data, then it will also be get executed, but JSX takes cares of it. It does not directly execute the code, it sanitizes the code from cross site scripting attacks on our browser
