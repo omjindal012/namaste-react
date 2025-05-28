@@ -88,7 +88,7 @@ It is very important to maintain the order of our script files, first -> react, 
 - npx parcel index.html
 - npx => Node Package Execute
 - By running this command parcel has created a server for us `Server running at http://localhost:1234`
-- Parcel is automatically refreshing the pafe for us, HMR (Hot Module Replacement)
+- Parcel is automatically refreshing the page for us, HMR (Hot Module Replacement)
 - Parcel uses File watchig algorithm which is written in c++.
 - Parcel is caching things for us as a result of which it builds the project very fast
 - It is not only the React which is making our app fast but a collection of things one of which is the parser which does image-optimization, compression, minification, bundling, consistent hashing, code splitting, differential bundling, error handling, diagonistic, https, tree shaking etc. to make our app faster

@@ -14,6 +14,7 @@ root.render(heading); // This render method is taking this heading object and co
 <div id = "parent">
     <div id = "child">
         <h1>My name is Raghav.</h1>
+        <h1>My name is Om Jindal.</h1>
     </div>
 </div>
 */
