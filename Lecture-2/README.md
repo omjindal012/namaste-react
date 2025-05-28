@@ -60,3 +60,11 @@ A system broken into small, independent service.
 - When we are trying to make an api call from localhost to API our browser does not allow for that
 - So we use the `Allow CORS` extension to overcome it
 - `corsproxy.io` -> `https://corsproxy.io/?` Add this before API link to avoid cors issue of extension
+
+- rafce -> Shortcut to create basic code for our component
+- When we want to move a next page we do not use anchor tag because it refreshes the whole page
+
+# Types of Routing in web app
+
+- Client Side Routing :- Single Page application just the components are interchaning which is already available on the client side
+- Server Side Routing :- Demands a whole new page in request from the server
