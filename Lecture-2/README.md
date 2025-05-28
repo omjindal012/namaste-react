@@ -68,3 +68,16 @@ A system broken into small, independent service.
 
 - Client Side Routing :- Single Page application just the components are interchaning which is already available on the client side
 - Server Side Routing :- Demands a whole new page in request from the server
+
+# why cant we make useEffect async
+
+You can’t directly make the useEffect function itself async, because:
+
+useEffect expects the callback to return either:
+
+- undefined (nothing), or
+- A cleanup function (a synchronous function that React can call before the effect runs again or on component unmount).
+
+You're making the callback return a Promise, not a cleanup function or undefined — which React doesn’t know how to handle. This causes unexpected behavior or warnings.
+
+You can't make useEffect itself async because it would return a Promise, which React can't use for cleanup. Instead, declare an async function inside the effect and call it.

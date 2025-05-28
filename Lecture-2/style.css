@@ -62,3 +62,8 @@
   margin: 10px 10px 10px 0;
   gap: 20px;
 }
+
+.user-card{
+  padding: 10px;
+  border: 1px solid black;
+}
