@@ -81,3 +81,10 @@ useEffect expects the callback to return either:
 You're making the callback return a Promise, not a cleanup function or undefined — which React doesn’t know how to handle. This causes unexpected behavior or warnings.
 
 You can't make useEffect itself async because it would return a Promise, which React can't use for cleanup. Instead, declare an async function inside the effect and call it.
+
+# Single Responsibility Principle
+
+- Each class or function must have only a single responsibility
+- This helps in testing and debugging
+
+# Chunking/ CodeSplitting/ DynamicBundling/ Lazy loading/ Ondemand Loading/ Dynamic Import

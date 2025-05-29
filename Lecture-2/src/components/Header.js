@@ -1,8 +1,11 @@
 import { LOGO_URL } from "../utils/constants";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
+  const onlineStatus = useOnlineStatus();
+
   const [btnName, setBtnName] = useState("Login");
   // Now since the btnName is constant then how is it updating it's value
   // This is because React is creating a new instance of btnName during re-render. A new btnName variable will be initizalized with the updated value
@@ -31,6 +34,7 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          <li>Online Status : {onlineStatus == true ? "✅" : "🔴"}</li>
           <li>
             <Link to="/">{home}</Link>
           </li>
@@ -40,6 +44,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <li>{cart}</li>
           <button
