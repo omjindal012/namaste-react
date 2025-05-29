@@ -1,10 +1,10 @@
 import { CDN_URL } from "../utils/constants";
 
 const cardStyle = {
-  backgroundColor: "#d3d3d3",
-  height: "auto",
-  width: "220px",
-  border: "2px solid black",
+  // backgroundColor: "#d3d3d3",
+  // height: "auto",
+  // width: "220px",
+  // border: "2px solid black",
 };
 
 const RestaurantCard = (props) => {
@@ -37,14 +37,17 @@ const RestaurantCard3 = (props) => {
   const { name, cloudinaryImageId, cuisines, locality, costForTwo, avgRating } =
     resData?.info;
   return (
-    <div className="res-card" style={cardStyle}>
+    <div
+      className="rounded-lg bg-gray-100 hover:bg-gray-200 w-[225px] p-4"
+      style={cardStyle}
+    >
       <img
-        className="res-logo"
+        className="h-[200px] w-[100%] rounded-xl"
         src={CDN_URL + cloudinaryImageId}
         alt="food-item"
       />
       <div style={{ padding: "10px" }}>
-        <h3>{name}</h3>
+        <h3 className="font-bold text-lg mb-2">{name}</h3>
         <h4>{cuisines.join(", ")}</h4>
         <h4>{avgRating} ⭐️</h4>
         <h4>{locality}</h4>

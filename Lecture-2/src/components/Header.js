@@ -28,29 +28,31 @@ const Header = () => {
   console.log("Header rendered2");
 
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
+    <div className="flex justify-between pr-[20px] items-center border-1 border-solid border-black">
+      <div>
+        <img className="w-[100px] h-[100px]" src={LOGO_URL} />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status : {onlineStatus == true ? "✅" : "🔴"}</li>
-          <li>
+      <div>
+        <ul className="flex gap-[30px]">
+          <li className="text-[20px] self-center">
+            Online Status : {onlineStatus == true ? "✅" : "🔴"}
+          </li>
+          <li className="text-[20px] self-center">
             <Link to="/">{home}</Link>
           </li>
-          <li>
+          <li className="text-[20px] self-center">
             {/* <a href="/about">About Us</a> */}
             <Link to="/about">About Us</Link>
           </li>
-          <li>
+          <li className="text-[20px] self-center">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li>
+          <li className="text-[20px] self-center">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li>{cart}</li>
+          <li className="text-[20px] self-center">{cart}</li>
           <button
-            className="login"
+            className="text-[20px] self-center"
             onClick={() => {
               btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
               cart = "Carts";

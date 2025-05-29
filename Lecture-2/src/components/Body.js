@@ -12,11 +12,12 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
   // Local State Varibale
   // const [listOfRestaurants, setListOfRestaurants] = useState(resList);
-  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const arr = useState([]);
   const listOfRestaurants = arr[0];
   const setListOfRestaurants = arr[1];
+
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
@@ -52,18 +53,19 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div>
+      <div className="flex gap-8 p-4">
+        <div>
           <input
             type="text"
-            className="search-input"
+            className="border-1 border-black border-solid"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value); // input change
             }}
           />
           <button
+            className="bg-green-200 rounded-lg px-4 py-2 ml-4 cursor-pointer"
             onClick={() => {
               const updatedRestaurant = listOfRestaurants.filter((el) => {
                 return el.info.name
@@ -77,18 +79,18 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="bg-pink-200 rounded-lg px-4 py-2 cursor-pointer"
           onClick={() => {
             const filterList = listOfRestaurants.filter(
               (res) => res.info.avgRating > 4
             );
-            setListOfRestaurants(filterList);
+            setFilteredRestaurant(filterList);
           }}
         >
           Top Rated Restaurant
         </button>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap gap-[20px]">
         {/* <RestaurantCard resName="Half Fried" cuisine="Momos, Pizza, Chinese" /> */}
         {/* <RestaurantCard2 resName="KFC" cuisine="Burger, Chiken Wings" /> */}
         {filteredRestaurant.map((restaurant, index) => (

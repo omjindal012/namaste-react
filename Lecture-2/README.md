@@ -88,3 +88,6 @@ You can't make useEffect itself async because it would return a Promise, which R
 - This helps in testing and debugging
 
 # Chunking/ CodeSplitting/ DynamicBundling/ Lazy loading/ Ondemand Loading/ Dynamic Import
+
+- Parcel bundles all the files into a single js file
+- But to optimize our app we make different bundles for different use cases that will only be loaded when they are required by using lazy loading
