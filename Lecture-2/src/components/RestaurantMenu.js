@@ -1,11 +1,15 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId); // custom Hook
+
+  const [showIndex, setShowIndex] = useState(null);
 
   // const [resInfo, setResInfo] = useState(null);
 
@@ -32,20 +36,20 @@ const RestaurantMenu = () => {
   return resInfo === null ? (
     <Shimmer />
   ) : (
-    <div className="menu">
-      <h1>{resInfo.name}</h1>
-      <p>
+    <div className="text-center">
+      <h1 className="font-bold text-2xl my-3">{resInfo.name}</h1>
+      <p className="font-semibold text-lg">
         {resInfo.cuisines.join(", ")} - {resInfo.costForTwoMessage}
       </p>
-      <h2>Menu</h2>
-      <ul>
-        {resInfo.menu.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} -{" "}
-            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-          </li>
-        ))}
-      </ul>
+      {resInfo.categories.map((category, index) => (
+        // RestaurantCategory is a controlled component because it is being controlled by RestaurantMenu
+        <RestaurantCategory
+          key={category.card.card.title}
+          data={category?.card?.card}
+          showItem={showIndex === index ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+        />
+      ))}
     </div>
   );
 };

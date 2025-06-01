@@ -2,14 +2,18 @@ import {
   RestaurantCard,
   RestaurantCard2,
   RestaurantCard3,
+  withDiscountLabel,
 } from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import resList from "../utils/mockData"; // We may or may not write .js here
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   // Local State Varibale
   // const [listOfRestaurants, setListOfRestaurants] = useState(resList);
 
@@ -20,6 +24,8 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  const DiscountedRestaurantCard = withDiscountLabel(RestaurantCard3);
 
   useEffect(() => {
     fetchData();
@@ -43,12 +49,10 @@ const Body = () => {
 
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false) {
-    console.log("offline");
     return (
       <h1>Looks like you're offline!! Please check your internet connection</h1>
     );
   }
-
   // Conditional Rendering
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -89,6 +93,18 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
+        <div>
+          <label>Username: </label>
+          <input
+            type="text"
+            className="border-1 border-black border-solid"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+              console.log(loggedInUser);
+            }}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap gap-[20px]">
         {/* <RestaurantCard resName="Half Fried" cuisine="Momos, Pizza, Chinese" /> */}
@@ -98,7 +114,11 @@ const Body = () => {
             to={"/restaurant/" + restaurant.info.id}
             key={restaurant.info.id}
           >
-            <RestaurantCard3 resData={restaurant} />
+            {restaurant.info.aggregatedDiscountInfoV3 ? (
+              <DiscountedRestaurantCard resData={restaurant} />
+            ) : (
+              <RestaurantCard3 resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

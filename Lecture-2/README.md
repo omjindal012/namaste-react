@@ -91,3 +91,15 @@ You can't make useEffect itself async because it would return a Promise, which R
 
 - Parcel bundles all the files into a single js file
 - But to optimize our app we make different bundles for different use cases that will only be loaded when they are required by using lazy loading
+
+# Higher Order Component
+
+- It is a function that takes a component as input and returns a component.
+
+# Lifting State Up
+
+- Controlled/ Uncontrolled Components
+
+# Props Drilling
+
+- We may want to pass data from parent node to leaf node but in this process data has to traverse through all the intermediate nodes which even does not require the data. And there may be some data that i want to be accessible everytime anywhere in my app, So this is possible with the help of `React Context`

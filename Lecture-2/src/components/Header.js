@@ -1,10 +1,14 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
+
+  // In case of Functional component how to use React Context
+  const { loggedInUser } = useContext(UserContext);
 
   const [btnName, setBtnName] = useState("Login");
   // Now since the btnName is constant then how is it updating it's value
@@ -28,7 +32,7 @@ const Header = () => {
   console.log("Header rendered2");
 
   return (
-    <div className="flex justify-between pr-[20px] items-center border-1 border-solid border-black">
+    <div className="flex justify-between pr-[20px] items-center border-1 border-solid border-black sm:bg-yellow-200 lg:bg-green-200">
       <div>
         <img className="w-[100px] h-[100px]" src={LOGO_URL} />
       </div>
@@ -65,6 +69,7 @@ const Header = () => {
             {btnName}
             {/* When the button is pressed the React will re-render the whole header component*/}
           </button>
+          <li className="text-[20px] self-center font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>

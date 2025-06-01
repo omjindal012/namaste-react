@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Header from "./components/Header";
@@ -10,15 +10,31 @@ import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocery from "./components/Grocery";
 const Grocery = lazy(() => import("./components/Grocery"));
+import UserContext from "./utils/UserContext";
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState(null);
+
+  useEffect(() => {
+    const data = {
+      name: "Om Jindal",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
-      {/* The outlet will be filled by the children that is passed on a particular path */}
-      <Outlet />
-      <Footer />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div className="app">
+        {/* We need to wrap UserContext.Provider to the whole app if we want to change the value everywhere */}
+
+        <UserContext.Provider value={{ loggedInUser: "Raghav" }}>
+          <Header />
+        </UserContext.Provider>
+        {/* The outlet will be filled by the children that is passed on a particular path */}
+        <Outlet />
+        <Footer />
+      </div>
+    </UserContext.Provider>
   );
 };
 
