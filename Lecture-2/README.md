@@ -103,3 +103,19 @@ You can't make useEffect itself async because it would return a Promise, which R
 # Props Drilling
 
 - We may want to pass data from parent node to leaf node but in this process data has to traverse through all the intermediate nodes which even does not require the data. And there may be some data that i want to be accessible everytime anywhere in my app, So this is possible with the help of `React Context`
+
+# Redux
+
+- Our app consist of UI-layer and Data-layer which works in sync to run our React App.
+- Redux works in data layer of our app
+- React and Redux are separate libraries, they are not same they are different
+- zustand is also another library which is used for state managemenet
+
+- It helps to build large scale applications and to handle data and to debug application
+- React-Redux || RTK(Redux-Toolkit)
+
+- Redux Store is a big JS object with a lot of data which is kept at a central global place
+- So that our redux store does not become so big and clumsy we have slices in our redux store
+
+- Write data -> When we click the add button to add item in the cart it `dispatch an action` which calls the `reducer function` which updates the cart slice of our redux store
+- Read data -> We will use `selector (subscribed to the store/ sycning)` to read data from the cart and update our React component

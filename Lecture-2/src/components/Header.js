@@ -3,12 +3,17 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   // In case of Functional component how to use React Context
   const { loggedInUser } = useContext(UserContext);
+
+  // Selector :- Only subscribe to the required portion of the store
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   const [btnName, setBtnName] = useState("Login");
   // Now since the btnName is constant then how is it updating it's value
@@ -54,7 +59,11 @@ const Header = () => {
           <li className="text-[20px] self-center">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li className="text-[20px] self-center">{cart}</li>
+          <li className="text-[20px] self-center font-bold ">
+            <Link to="/cart">
+              {cart} ({cartItems.length})
+            </Link>
+          </li>
           <button
             className="text-[20px] self-center"
             onClick={() => {

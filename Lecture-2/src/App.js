@@ -11,6 +11,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocery from "./components/Grocery";
 const Grocery = lazy(() => import("./components/Grocery"));
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 const AppLayout = () => {
   const [userName, setUserName] = useState(null);
@@ -23,18 +26,20 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <div className="app">
-        {/* We need to wrap UserContext.Provider to the whole app if we want to change the value everywhere */}
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          {/* We need to wrap UserContext.Provider to the whole app if we want to change the value everywhere */}
 
-        <UserContext.Provider value={{ loggedInUser: "Raghav" }}>
-          <Header />
-        </UserContext.Provider>
-        {/* The outlet will be filled by the children that is passed on a particular path */}
-        <Outlet />
-        <Footer />
-      </div>
-    </UserContext.Provider>
+          <UserContext.Provider value={{ loggedInUser: "Raghav" }}>
+            <Header />
+          </UserContext.Provider>
+          {/* The outlet will be filled by the children that is passed on a particular path */}
+          <Outlet />
+          <Footer />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -67,6 +72,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
